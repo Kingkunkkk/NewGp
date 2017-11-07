@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="股票代號"
+            android:layout_weight="1"
+            android:id="@+id/gp_name"/>
+
+        <TextView
+            android:id="@+id/gp_xianjia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="現價"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/gp_shengdie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="升跌"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/gp_lirun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="利潤"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/gp_updatetime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="更新時間"
+            android:gravity="center"/>
+</LinearLayout>

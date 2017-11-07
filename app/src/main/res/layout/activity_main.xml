@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="kun.gp.MainActivity"
+    android:orientation="vertical"
+    android:background="#6c6c6c">
+
+    <!--//国企 深圳 上证 恒指-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/top"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/henzhi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="恒指："/>
+
+        <TextView
+            android:id="@+id/guozhi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="国指："/>
+
+        <TextView
+            android:id="@+id/shangzhi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="上指："/>
+
+        <TextView
+            android:id="@+id/shenzhi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="深指："/>
+
+    </LinearLayout>
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/top"-->
+        <!--android:id="@+id/top2"-->
+        <!--android:orientation="horizontal">-->
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center"-->
+            <!--android:text="股票代號"-->
+            <!--android:layout_weight="1"/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="現價"-->
+            <!--android:gravity="center"/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="升跌"-->
+            <!--android:gravity="center"/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="利潤"-->
+            <!--android:gravity="center"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/gp_updatetime"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="更新時間"-->
+            <!--android:gravity="center"/>-->
+
+    <!--</LinearLayout>-->
+    <Space
+        android:id="@+id/space"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/white"
+        android:layout_below="@id/top"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/space"/>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/mCoordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:clickable="true"
+            app:fabSize="mini"
+            app:srcCompat="@android:drawable/ic_menu_add"
+            android:layout_gravity="right"/>
+
+    </android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

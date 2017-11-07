@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#102027</color>
+    <color name="colorPrimaryDark">#37474f</color>
+    <color name="colorAccent">#62727b</color>
+
+    <color name="huangse">#FFD700</color>
+
+    <color name="tr">#6c6c6c</color>
+
+    <color name="color_light_blue">#00DDB6</color>
+</resources>
