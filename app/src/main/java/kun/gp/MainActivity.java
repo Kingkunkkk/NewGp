@@ -8,9 +8,13 @@ import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
+import android.media.SoundPool;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.CoordinatorLayout;
@@ -78,8 +82,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private TextView hengzhi,guozhi,shangzhi,shenzhi;
 
-    public static MediaPlayer mMediaPlayer;
-
     private List<HomeGpListData> mList = new ArrayList<>();
 
     private Handler handler = new Handler(){
@@ -116,6 +118,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button.setOnClickListener(this);
     }
 
+    public static SoundPool mSoundPool;
+    public static int mSoundId;
+    public static int mPlayId;
+    public static boolean isReady;
     private void initView() {
         String string = DataToSdUtils.convertCodeAndGetText("HKStock.txt");
         try {
@@ -128,10 +134,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        mMediaPlayer = MediaPlayer.create(getApplicationContext(),sound);
-        mMediaPlayer.setLooping(true);
+        isReady = false;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mSoundPool = new SoundPool.Builder()
+                    .setMaxStreams(1)
+                    .build();
+        } else {
+            mSoundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 1);
+        }
+        mSoundId = mSoundPool.load(MainActivity.this, R.raw.testmusiccc, 1);
+        mSoundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                isReady = true;
+            }
+        });
 
         button = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         mRecyclerView= (RecyclerView) findViewById(R.id.recyclerView);
@@ -211,8 +228,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         handler.sendEmptyMessageDelayed(1,1000);
     }
 
+    public static void play(){
+        if (isReady){
+            mPlayId = mSoundPool.play(mSoundId, 1, 1, 1, -1, 1);
+        }else {
+            play();
+        }
+    }
+
+    public static void stop(){
+        mSoundPool.stop(mPlayId);
+    }
+
+
     private CheckBox checkBox;
     private void initDialog(){
+
         mainRvAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, final int position) {

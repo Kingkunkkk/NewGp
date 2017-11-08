@@ -3,6 +3,9 @@ package kun.gp;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.os.Build;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -22,12 +25,17 @@ import kun.gp.been.HomeGpListData;
  */
 
 public class MainRvTestAdapter extends BaseItemDraggableAdapter<HomeGpListData,BaseViewHolder>{
+
+
     public MainRvTestAdapter(List<HomeGpListData> data) {
         super(R.layout.item_new, data);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, HomeGpListData item) {
+
+
+
         helper.setText(R.id.gpNum,item.getGpNum());
         helper.setText(R.id.gpName,item.getGpName());
         helper.setText(R.id.gpXianjia,NumberUtils.getMoneyType(item.getGpNowMoney()+""));
@@ -69,17 +77,9 @@ public class MainRvTestAdapter extends BaseItemDraggableAdapter<HomeGpListData,B
             }
 
                 if (item.isVoiceSelect().equals("1")){
-                    if (MainActivity.mMediaPlayer.isPlaying()){
-                        MainActivity.mMediaPlayer.pause();
-                        MainActivity.mMediaPlayer.seekTo(0);
-                    }
-                    MainActivity.mMediaPlayer.start();
-
+                    MainActivity.play();
                 }else {
-                    if (MainActivity.mMediaPlayer.isPlaying()){
-                        MainActivity.mMediaPlayer.pause();
-                        MainActivity.mMediaPlayer.seekTo(0);
-                    }
+                    MainActivity.stop();
                 }
             layoutAnimation(helper.itemView);
             helper.setTextColor(R.id.gpShengdie,Color.WHITE);
@@ -88,11 +88,7 @@ public class MainRvTestAdapter extends BaseItemDraggableAdapter<HomeGpListData,B
             helper.itemView.clearAnimation();
             helper.itemView.setBackgroundColor(mContext.getResources().getColor(R.color.tr));
             item.setStartAnim(false);
-            if (MainActivity.mMediaPlayer.isPlaying()){
-                MainActivity.mMediaPlayer.pause();
-                MainActivity.mMediaPlayer.seekTo(0);
-            }
-
+            MainActivity.stop();
         }
     }
 
